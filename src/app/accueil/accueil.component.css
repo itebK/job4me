@@ -1,0 +1,24 @@
+.img-bg{
+	background-color: rgba(0, 0, 0, 0.34) !important;
+	background-image: url('../../assets/img/bg-home.jpg');
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+	width : 100%;
+	height : 70vh;
+	background-blend-mode: color;
+}
+
+
+.card {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+.search-filter{
+	margin-top : 70px;
+}
+
+.text-home {
+	margin-top : 70px;
+	color : #fff;
+}

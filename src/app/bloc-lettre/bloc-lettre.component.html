@@ -1,0 +1,19 @@
+<div class="card shadow">
+    <div class="card-block">
+        <h4 class="card-title">Lettre motivation</h4>
+    </div>
+    <ul class="list-group list-group-flush" *ngIf="listeLettre?.length > 0">
+        <li *ngFor="let lettre of listeLettre; let i = index" class="list-group-item list-group-item-action justify-content-between">
+            {{lettre.name}}
+            <span (click)="removeLettre(i)" class="badge badge-default badge-pill bg-danger">
+		<i class="fa fa-times" aria-hidden="true"></i>
+		</span></li>
+
+    </ul>
+    <div class="card-block">
+        <label class="custom-file">
+      <input name="lettre" type="file" (click)="arg = 'lettre'" class="custom-file-input" ngFileSelect [options]="options" (onUpload)="handleUploadLettre($event)" (beforeUpload)="beforeUploadLettre($event)">
+    <span class="custom-file-control"></span>
+  </label>
+    </div>
+</div>

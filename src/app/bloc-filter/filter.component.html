@@ -1,0 +1,48 @@
+<div class="card shadow">
+	<div class="card-block">
+		<h4 class="card-title">Filtre</h4>
+	</div>
+
+  <form class="form-horizontal"  #f="ngForm" (ngSubmit)="recherche(f.value)">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">
+
+
+      <div *ngFor="let x of TypeList">
+        <label
+          class="custom-control custom-checkbox">
+          <input  type="checkbox" class="custom-control-input" name="{{x.type}}" ngModel  > <span
+          class="custom-control-indicator"></span> <span
+          class="custom-control-description">{{x.type}}</span>
+        </label>
+      </div>
+
+    </li>
+
+		<li class="list-group-item">
+			Compétence :
+			<tag-input ngModel name="competence" required
+			           [onlyFromAutocomplete]="true">
+			    <tag-input-dropdown [showDropdownIfEmpty]="true"
+			                        [autocompleteItems]="autocompleteTagList">
+			    </tag-input-dropdown>
+			</tag-input>
+
+		</li>
+		<li class="list-group-item">
+
+			<input type="range" min="{{min}}" max="{{max}}" [(ngModel)]="salaireInput" value="12000" name="salaire" class="slider" id="myRange">
+				<span><i class="fa fa-usd" aria-hidden="true"></i>
+				 {{salaireInput}}</span>
+
+		</li>
+	</ul>
+	<div class="card-block">
+    <button class="btn btn-primary"  type="submit">
+      Rechercher
+    </button>
+	</div>
+
+
+  </form>
+</div>

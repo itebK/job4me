@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-3"></div>
+        <div class="col-6 ">
+            <div class="card shadow">
+                <!-- ##################### MESSAGE De success #################### -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success" *ngIf="msg == 'success' ">inscription effectuée avec succès </div>
+                    </div>
+                </div>
+
+                <form class="form-horizontal" role="form" #f="ngForm" (ngSubmit)="authentification(f.value)">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Connexion</h2>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <!-- ##################### MESSAGE D'ERREUR #################### -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-danger" *ngIf="!user">Email ou mot de passe est incorrecte</div>
+                        </div>
+                    </div>
+                    <!-- ##################### EMAIL #################### -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <!-- class="has-danger" pour erreur -->
+                                <label class="sr-only" for="email">Email</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon" style="width: 2.6rem">
+                                        <i class="fa fa-at"></i>
+                                    </div>
+                                    <input type="text" name="email" class="form-control" id="email" ngModel placeholder="mail@exemple.com" required autofocus>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ##################### MOT DE PASSE #################### -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="sr-only" for="password">Mot de passe</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon" style="width: 2.6rem">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" name="password" class="form-control" ngModel id="password" placeholder="Mot de passe" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ##################### CONNEXion #################### -->
+                    <div class="row" style="padding-top: 1rem">
+                        <div class="col-12" align="right">
+                            <button type="submit" class="btn btn-success">
+								<i class="fa fa-sign-in"></i> Connexion
+							</button>
+                            <a class="btn btn-link" routerLink="/inscription">Inscription</a>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<br>

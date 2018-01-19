@@ -1,0 +1,35 @@
+<div class="card shadow search-filter">
+	<div class="card-block">
+		<div class="col-12">
+			<div class="input-group">
+				<div class="input-group addon">
+
+					<input [(ngModel)]="customSelected"  [typeahead]="statesComplex"
+						typeaheadOptionField="name"  placeholder="Chercher offre..."
+						class="form-control" /> <span class="input-group-addon">
+          <i class="fa fa-search" aria-hidden="true" ></i>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="card shadow" *ngFor="let o of listOffres | filter : customSelected ; let i = index">
+        <button *ngIf="localS.localStorageItem('role') === 'admin'" type="button" class="close text-right"
+                (click)="removeOffre(i)" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+	<div class="card-block">
+		<h4 class="card-title">{{o.titre}}</h4>
+		<h6 class="card-subtitle mb-2 text-muted">{{o.entreprise.secteurActivite}}</h6>
+		<p class="card-text">{{o.description}}</p>
+		<p class="card-text" >
+			<small class="text-danger" *ngFor="let c of o.competences " >{{c.libelle}}  </small>
+		</p>
+		<a  class="card-link clickable text-primary" (click)='getOffre(o.idOffre);'>Voir offre</a>
+    <a  class=" text-primary card-link clickable " *ngIf="localS.localStorageItem('role') == 'Candidat'"
+			 (click)='addFavoris(o);' >Favoris  </a>
+    <small class="text-muted pull-right">{{o.dateCreation | date:'yyyy-MM-dd'}}</small>
+	</div>
+</div>

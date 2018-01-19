@@ -1,0 +1,388 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <div class="card hovercard shadow">
+                <div class="card-background">
+                    <img class="card-bkimg" alt="" src="../../assets/img/img.jpg">
+                </div>
+                <div class="useravatar">
+
+                    <img alt="" src="../../assets/img/img.jpg">
+                </div>
+                <div class="card-info">
+                    <i (click)="openModal(template)" style="color: red;" class="fa fa-camera camera" aria-hidden="true"></i> <span class="card-title">{{utilisateur.nom}} {{utilisateur.prenom}}</span>
+                </div>
+            </div>
+
+
+
+            <!-- ###################### MODAL ############################ -->
+            <ng-template #template>
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Modifier Photo de profile</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+                </div>
+                <div class="modal-body text-center">
+                    <label class="custom-file"> <input name="profile-picture" type="file" id="file"
+					class="custom-file-input"> <span
+					class="custom-file-control"></span>
+				</label>
+                </div>
+            </ng-template>
+            <!-- ###################### MODAL FIN ############################ -->
+
+
+
+            <div class="card shadow cv-container">
+                <tabset [justified]="true">
+                    <!-- ######################## CV ########################### -->
+                    <tab heading="CV" [customClass]="classTab">
+                        <tabset type="pills" [justified]="true">
+                            <tab heading="A propos" [customClass]="classTabInput">
+
+                                <div class="container-fluid">
+
+                                    <div class="row">
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <textarea placeholder="A propos..." class="form-control" [disabled]="aproposContent !== ''" [(ngModel)]="apropos" id="exampleTextarea" rows="3"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12" align="right">
+                                            <button type="button" class="btn btn-info" (click)="addApropos()">
+								Enregistrer résumé</button>
+                                        </div>
+
+                                        <div class="col-12" style="margin-top: 10px;">
+
+
+                                            <ul class="list-group" *ngIf="aproposContent !== ''">
+
+                                                <li class="list-group-item justify-content-between list-group-item-action">
+                                                    {{cv_en_ligne.apropos}} <span class="badge badge-default badge-pill bg-danger" (click)="removeApropos()"> <i class="fa fa-times"
+										aria-hidden="true"></i>
+								</span>
+                                                </li>
+
+                                            </ul>
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </tab>
+                            <tab heading="Experience" [customClass]="classTabInput">
+
+                                <div class="container-fluid">
+
+                                    <div class="row experience-cv">
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" [(ngModel)]="experience.poste_occupe" name="poste_occupe" id="poste_occupe" placeholder="Poste occupée">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" [(ngModel)]="experience.duree" name="duree" id="duree" class="form-control" placeholder="Durée">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <textarea class="form-control" [(ngModel)]="experience.description" name="description" id="description" placeholder="Description"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12" align="right">
+                                            <button type="button" class="btn btn-info" (click)="addExperience()">Ajouter expérience</button>
+                                        </div>
+
+
+                                        <div class="col-12" style="margin-top: 10px;">
+
+
+                                            <ul class="list-group" *ngIf="listeExperience?.length > 0">
+
+                                                <li class="list-group-item justify-content-between list-group-item-action" *ngFor="let exp of listeExperience; let i = index">
+                                                    {{listeExperience[i].poste_occupe}}<br> {{listeExperience[i].duree}}
+                                                    <br> {{listeExperience[i].description}} <span class="badge badge-default badge-pill bg-danger" (click)="removeExperience(i)"> <i class="fa fa-times"
+										aria-hidden="true"></i>
+								</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </tab>
+                            <tab heading="Compétence" [customClass]="classTabInput">
+
+                                <div class="container-fluid">
+
+                                    <div class="row compétence-cv">
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Compétence" [(ngModel)]="competence.competence" name="competence" id="competence">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Niveau" [(ngModel)]="competence.niveau">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-12" align="right">
+                                    <button type="button" class="btn btn-info" (click)="addCompetence()">Ajouter compétence</button>
+                                </div>
+
+
+                                <div class="col-12" style="margin-top: 10px;">
+
+
+                                    <ul class="list-group" *ngIf="listeCompetence?.length > 0">
+
+                                        <li class="list-group-item justify-content-between list-group-item-action" *ngFor="let exp of listeCompetence; let i = index">
+                                            {{listeCompetence[i].competence}}<br> {{listeCompetence[i].niveau}} <span class="badge badge-default badge-pill bg-danger" (click)="removeCompetence(i)"> <i class="fa fa-times"
+								aria-hidden="true"></i>
+						</span>
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+
+
+
+                            </tab>
+                            <tab heading="Certification" [customClass]="classTabInput">
+
+                                <div class="container-fluid">
+
+                                    <div class="row certification-cv">
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Certification" [(ngModel)]="certification.certification">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Année d'obtention" [(ngModel)]="certification.annee">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" align="right">
+                                    <button type="button" class="btn btn-info" (click)="addCertification()">Ajouter certification</button>
+                                </div>
+
+
+                                <div class="col-12" style="margin-top: 10px;">
+
+
+                                    <ul class="list-group" *ngIf="listeCertification?.length > 0">
+
+                                        <li class="list-group-item justify-content-between list-group-item-action" *ngFor="let exp of listeCertification; let i = index">
+                                            {{listeCertification[i].certification}}<br> {{listeCertification[i].annee}} <span class="badge badge-default badge-pill bg-danger" (click)="removeCertification(i)"> <i class="fa fa-times"
+								aria-hidden="true"></i>
+						</span>
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+
+
+
+                            </tab>
+                            <tab heading="Formation" [customClass]="classTabInput">
+
+                                <div class="container-fluid">
+
+                                    <div class="row formation-cv">
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Etablissement" [(ngModel)]="formation.etablissement">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Specialité" [(ngModel)]="formation.specialite">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Diplome" [(ngModel)]="formation.diplome">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Année d'obtention" [(ngModel)]="formation.annee">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="col-12" align="right">
+                                    <button type="button" class="btn btn-info" (click)="addFormation()">
+						Ajouter formation</button>
+                                </div>
+
+
+                                <div class="col-12" style="margin-top: 10px;">
+
+
+                                    <ul class="list-group" *ngIf="listeFormation?.length > 0">
+
+                                        <li class="list-group-item justify-content-between list-group-item-action" *ngFor="let exp of listeFormation; let i = index">
+                                            {{listeFormation[i].etablissement}}<br> {{listeFormation[i].specialite}}
+                                            <br> {{listeFormation[i].diplome}}
+                                            <br> {{listeFormation[i].annee}} <span class="badge badge-default badge-pill bg-danger" (click)="removeFormation(i)"> <i class="fa fa-times"
+								aria-hidden="true"></i>
+						</span>
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+
+
+
+                            </tab>
+                        </tabset>
+                    </tab>
+                    <!-- ######################## HISTORIQUE CANDIDATURE ########################### -->
+                    <tab heading="Candidature">
+
+                        <ul class="list-group favoris-list">
+                            <li class="list-group-item list-group-item-action justify-content-between" *ngFor="let candidature of listePostuler; let i = index">
+                                {{listePostuler[i].candidature.offre.titre}} <span class="badge badge-default badge-pill bg-danger" (click)="removeCandidature(i)"> <i class="fa fa-times"
+							aria-hidden="true"></i>
+					</span>
+                            </li>
+                        </ul>
+
+                    </tab>
+                    <!-- ######################## FAVORIS ########################### -->
+                    <tab heading="Favoris">
+
+                        <ul class="list-group favoris-list">
+                            <li class="list-group-item list-group-item-action justify-content-between" *ngFor="let favoris of listeFavoris; let i = index">
+                                {{listeFavoris[i].offre.titre}} <span class="badge badge-default badge-pill bg-danger" (click)="removeFavoris(i)"> <i class="fa fa-times"
+							aria-hidden="true"></i>
+					</span>
+                            </li>
+
+                        </ul>
+
+                    </tab>
+                    <!-- ######################## PROFILE ########################### -->
+                    <tab heading="Profile" [customClass]="classTabInput">
+
+                        <div class="container-fluid">
+                            <form class="form-horizontal" #f="ngForm" (ngSubmit)="UpdateCandidat(f.value)">
+                                <!--------------------Message de succes-------------------------->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="alert alert-success" *ngIf="msg == 'success'">
+                                            Modification engregistrée avec success!
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---------------------------------------------------------------->
+                                <!--------------------Message d'erreur-------------------------->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="alert alert-danger" *ngIf="!(confirmPassword.valid || confirmPassword.pristine )">
+                                            Mot de passe incompatible
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---------------------------------------------------------------->
+                                <div class="row">
+
+                                    <div class="col-12">
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="utilisateur.nom" name="nom" #nom="ngModel">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Prenom" [(ngModel)]="utilisateur.prenom" name="prenom" #prenom="ngModel">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" ngModel [ngModel]="utilisateur.dateNaissance |  date:'yyyy-MM-dd' " name="dateNaissance" #dateNaissance="ngModel" placeholder="Date naissance">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Téléphone" name="telephone" [(ngModel)]="utilisateur.telephone" #telephone="ngModel">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="utilisateur.email" #email="ngModel">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Adresse" name="adresse" [(ngModel)]="utilisateur.adresse" #adresse="ngModel">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control" ngModel #password="ngModel" app-validateEqual="confirmPassword" reverse="true" id="password" placeholder="Mot de passe" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" name="confirmPassword" class="form-control" app-validateEqual="password" #confirmPassword="ngModel" ngModel id="confirmPassword" placeholder="Confirmer mot de passe" required>
+                                        </div>
+
+                                        <input type="text" hidden [(ngModel)]="utilisateur.role" name="role" #role="ngModel">
+
+                                        <button type="submit" [disabled]="!f.valid" class="btn btn-success pull-right">Mettre
+								à jour mon profile</button>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </tab>
+                </tabset>
+            </div>
+
+
+
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12">
+                    <app-bloc-suggestions></app-bloc-suggestions>
+                </div>
+                <div class="col-12">
+                    <app-bloc-cv></app-bloc-cv>
+                </div>
+                <div class="col-12">
+                    <app-bloc-lettre></app-bloc-lettre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

@@ -1,0 +1,15 @@
+.card img{
+	margin : auto;
+	width : 100px;
+	height : auto;
+	cursor : pointer;
+}
+
+.img-profile{
+	padding : 0;
+	padding-top: 1.25rem;
+}
+
+.card-title {
+	cursor : pointer;
+}

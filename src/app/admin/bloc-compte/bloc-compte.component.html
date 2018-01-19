@@ -1,0 +1,40 @@
+
+<div class="card shadow cv-container">
+
+	<div>
+		<tabset [justified]="true">
+
+			<tab heading="Candidat"> <br>
+				<ul class="list-group" *ngIf="listeCandidat?.length > 0">
+
+					<li class="list-group-item justify-content-between" *ngFor="let cand of listeCandidat; let i = index">
+
+					{{cand.nom}} {{cand.prenom}}
+
+						<span class="badge badge-default badge-pill bg-danger" (click)="removeCandidat(i)"><i
+							class="fa fa-times" aria-hidden="true"></i></span>
+					</li>
+
+				</ul>
+
+			</tab>
+
+			<tab heading="Entreprise"> <br>
+				<ul class="list-group" *ngIf="listeEntreprise?.length > 0">
+					<li class="list-group-item justify-content-between" *ngFor="let entr of listeEntreprise; let i = index">
+
+            <h4 class="card-title">{{entr.nom}} </h4> <br>
+            {{entr.description}}
+
+						<span class="badge badge-default badge-pill bg-danger" (click)="removeEntreprise(i)"><i
+							class="fa fa-times" aria-hidden="true"></i></span>
+					</li>
+
+				</ul>
+
+			</tab>
+
+		</tabset>
+	</div>
+
+</div>

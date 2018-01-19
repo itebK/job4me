@@ -1,0 +1,90 @@
+<div class="card shadow">
+
+	<div class="card-block">
+
+		<h4 class="card-title">Candidature archivée</h4>
+	</div>
+	<ul class="list-group list-group-flush">
+		<li	class="list-group-item list-group-item-action justify-content-between" *ngFor="let o of listeArchiveCandidature ; let i = index">
+			<h5>{{listeArchiveCandidature[i].candidature.offre.titre}}</h5>
+			<span>{{listeArchiveCandidature[i].document.candidat.nom }}</span>
+
+			<a class="card-link text-primary" style="cursor:pointer;"
+         (click)=" CvCandidat(listeArchiveCandidature[i].document.candidat.idUtilisateur ,i ) ; lgModal.show()">
+        Voir CV</a>  <span
+			class="badge badge-default badge-pill bg-danger"><i
+				class="fa fa-times" (click)="removeCandidature(i)" aria-hidden="true"></i></span>
+		</li>
+	</ul>
+	<!-- ###################### MODAL ############################ -->
+
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">{{nom}} {{prenom}}</h4>
+          <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <blockquote class="blockquote">
+            <h5>A propos</h5>
+            <p>{{apropos}}</p>
+          </blockquote>
+
+          <blockquote class="blockquote">
+            <h5>Experience</h5>
+            <ul class="list-group list-group-flush"  *ngIf="listeExperience?.length > 0">
+              <li	class="list-group-item list-group-item-action" *ngFor="let exp of listeExperience; let i = index">
+                {{listeExperience[i].poste_occupe}} <br>
+                {{listeExperience[i].duree}}<br>
+                {{listeExperience[i].description}}
+              </li>
+            </ul>
+          </blockquote>
+
+          <blockquote class="blockquote">
+            <h5>Compétence</h5>
+            <ul class="list-group list-group-flush">
+              <li	class="list-group-item list-group-item-action">
+                comp1
+              </li>
+            </ul>
+          </blockquote>
+
+          <blockquote class="blockquote">
+            <h5>Certification</h5>
+            <ul class="list-group list-group-flush" *ngIf="listeExperience?.length > 0">
+              <li	class="list-group-item list-group-item-action" *ngFor="let exp of listeCertification; let i = index">
+                {{listeCertification[i].certification}}<br>
+                {{listeCertification[i].annee}}
+              </li>
+            </ul>
+          </blockquote>
+
+          <blockquote class="blockquote">
+            <h5>Formation</h5>
+            <ul class="list-group list-group-flush"  *ngIf="listeFormation?.length > 0" >
+              <li	class="list-group-item list-group-item-action" *ngFor="let exp of listeFormation; let i = index">
+                {{listeFormation[i].etablissement}}<br>
+                {{listeFormation[i].specialite}}<br>
+                {{listeFormation[i].diplome}}<br>
+                {{listeFormation[i].annee}}
+              </li>
+            </ul>
+          </blockquote>
+
+          <div class="pull-right">
+            <a href="#"
+               class="btn btn-success card-link">Télécharger CV</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ###################### MODAL ############################ -->
+</div>

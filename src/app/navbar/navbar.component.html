@@ -1,0 +1,47 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-inverse bg-primary shadow">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+    <a class="navbar-brand inset" routerLink="">
+        <img src="../../assets/img/logo.png"></a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav ml-auto ">
+
+            <li class="nav-item active"><a class="nav-link clickable" (click)="home()">
+              Offres </a></li>
+            <li class="nav-item active"><a class="nav-link" routerLink="/entreprises" *ngIf="localS.localStorageItem('email') != null"> Entreprises </a></li>
+
+            <li *ngIf="localS.localStorageItem('email') != null">
+                <div class="inset btn-group" dropdown>
+                    <img dropdownToggle src="../../assets/img/img.jpg" />
+
+                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+                        <!-- PROFILE CANDIDAT -->
+                        <li *ngIf="localS.localStorageItem('role') == 'Candidat'" role="menuitem"><a routerLink="/profile" class="dropdown-item">Profile candidat</a></li>
+                        <!-- PROFILE ENTREPRISE -->
+                        <li *ngIf="localS.localStorageItem('role') == 'Entreprise'" role="menuitem"><a routerLink="/profile-entreprise" class="dropdown-item">Profile entreprise</a></li>
+                      <!-- PROFILE ENTREPRISE -->
+                      <li *ngIf="localS.localStorageItem('role') == 'admin'" role="menuitem"><a routerLink="/admin" class="dropdown-item">Profile admin</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a class="dropdown-item" href="#" (click)="deconnexion()">Déconnexion
+						</a></li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item active" *ngIf="localS.localStorageItem('email') == null">
+                <a class="nav-link" routerLink="/connexion"> Connexion </a></li>
+
+            <li class="nav-item active" *ngIf="localS.localStorageItem('email') == null">
+
+                <button type="button" routerLink="/inscription" class="btn btn-success">Inscription</button>
+
+            </li>
+
+        </ul>
+
+    </div>
+</nav>

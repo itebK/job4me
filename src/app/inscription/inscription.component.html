@@ -1,0 +1,153 @@
+<div class="container-fluid">
+	<div class="row ">
+		<div class="col-3"></div>
+		<div class="col-6 ">
+			<div class="card shadow">
+
+				<form class="form-horizontal"  #f="ngForm" (ngSubmit)="onSaveUser(f.value)">
+					<div class="row">
+						<div class="col-12">
+							<h2>Inscription</h2>
+							<hr>
+						</div>
+					</div>
+          <!-- ##################### MESSAGE D'ERREUR #################### -->
+          <div class="row" >
+            <div class="col-12">
+                <div class="alert alert-danger" *ngIf="errorMail">
+                  Email est déja utilisé
+                </div>
+            </div>
+          </div>
+					<!-- ##################### MESSAGE D'ERREUR #################### -->
+					<div class="row" >
+						<div class="col-12">
+							<div class="alert alert-danger" *ngIf="nom.invalid && (nom.dirty || nom.touched)">
+                <div *ngIf="nom.errors.required">
+                  Le nom est obligatoire
+                </div>
+                <div *ngIf="nom.errors.minlength">
+                 Le nom doit contenir au moin 4 lettre
+                </div>
+              </div>
+						</div>
+					</div>
+					<!-- ##################### NOM ET PRENOM #################### -->
+					<div class="row">
+						<div class="col-12">
+							<div class="form-group">
+								<!-- class="has-danger" pour erreur -->
+								<label class="sr-only" >Nom </label>
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-user"></i>
+									</div>
+									<input type="text" class="form-control" [(ngModel)]="utilisateur.nom" name="nom" #nom="ngModel"
+                         minlength="4" required  placeholder="Nom "  >
+								</div>
+							</div>
+						</div>
+					</div>
+          <!-- ##################### Type #################### -->
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label class="sr-only" for="password">Type</label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon" style="width: 2.6rem">
+                    <i class="fa fa-users"></i>
+                  </div>
+                  <select class="form-control"  id="role"
+                          required
+                          [(ngModel)]="utilisateur.role" name="role">
+                    <option disabled [value]="types[-1]">Vous étes un candidat ou une entreprise</option>
+                    <option *ngFor="let t of types" [value]="t">{{t}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ##################### MESSAGE D'ERREUR #################### -->
+          <div class="row" >
+            <div class="col-12">
+              <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched) ">
+                <div  *ngIf="email.errors.required">
+                  Email est obligatoire
+                </div>
+                <div  *ngIf="email.errors.pattern ">
+                  Email est invalida
+                </div>
+              </div>
+            </div>
+          </div>
+					<!-- ##################### EMAIL #################### -->
+					<div class="row">
+						<div class="col-12">
+							<div class="form-group">
+								<!-- class="has-danger" pour erreur -->
+								<label class="sr-only" for="email">Email</label>
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-at"></i>
+									</div>
+									<input type="text" name="email" class="form-control" id="email" [(ngModel)]="utilisateur.email"  #email="ngModel"
+                         email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required
+										placeholder="mail@exemple.com" required >
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ##################### MOT DE PASSE #################### -->
+					<div class="row">
+						<div class="col-12">
+							<div class="form-group">
+								<label class="sr-only" for="password">Mot de passe</label>
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-key"></i>
+									</div>
+									<input type="password" name="password" class="form-control" ngModel  #password="ngModel"
+                         app-validateEqual="confirmPassword" reverse="true"	id="password" placeholder="Mot de passe" required>
+								</div>
+							</div>
+						</div>
+					</div>
+          <!-- ##################### MESSAGE D'ERREUR #################### -->
+          <div class="row" >
+            <div class="col-12">
+              <div class="alert alert-danger" *ngIf="!(confirmPassword.valid || confirmPassword.pristine )">
+                  Mot de passe incompatible
+              </div>
+            </div>
+          </div>
+					<!-- ##################### MOT DE PASSE #################### -->
+					<div class="row">
+						<div class="col-12">
+							<div class="form-group">
+								<label class="sr-only" for="confirmPassword">Confirmer mot de passe</label>
+								<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+									<div class="input-group-addon" style="width: 2.6rem">
+										<i class="fa fa-key"></i>
+									</div>
+									<input type="password" name="confirmPassword" class="form-control" app-validateEqual="password"
+                         #confirmPassword="ngModel" ngModel  id="confirmPassword" placeholder="Confirmer mot de passe" required>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ##################### CONNEXion #################### -->
+					<div class="row" style="padding-top: 1rem">
+						<div class="col-12" align="right">
+							<button class="btn btn-success" [disabled]="!f.valid" type="submit">
+								<i class="fa fa-sign-in" ></i> Inscription
+							</button>
+							<a class="btn btn-link" routerLink="/connexion">Connexion</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-3"></div>
+	</div>
+</div>
+<br>

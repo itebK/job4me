@@ -1,0 +1,115 @@
+<div class="card shadow">
+
+	<div class="card-block">
+		<h4 class="card-title">
+			Consulter mes offres <span (click)="lgModal.show()"
+				class="pull-right" style="cursor: pointer;"> <i style="color:#5cb85c"
+				class="fa fa-plus-circle" aria-hidden="true"></i>
+			</span>
+		</h4>
+
+
+	</div>
+	<ul class="list-group list-group-flush">
+		<li  *ngFor="let o of listOffre ; let i = index"
+			class="list-group-item list-group-item-action justify-content-between">
+		<a class="card-link clickable text-primary" (click)='getOffre(o.idOffre);'>{{o.titre}} </a>	 <span class="badge badge-default badge-pill bg-danger" (click)="removeOffre(i)"><i
+				class="fa fa-times" aria-hidden="true"></i></span>
+		</li>
+	</ul>
+</div>
+
+<!-- ###################### MODAL ############################ -->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+	role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title pull-left">Ajouter un offre</h4>
+				<button type="button" class="close pull-right"
+					(click)="lgModal.hide();" aria-label="Close">
+					<span aria-hidden="true"  >&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<form  #f="ngForm" (ngSubmit)="onSaveOffre(f.value) ; ">
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Titre" required [(ngModel)]="offre.titre" name="titre" #titre="ngModel">
+          </div>
+
+
+					<div class="form-group">
+						<label for="example-datetime-local-input"
+							class="col-2 col-form-label">Date création</label> <input ngModel name="dateCreation" #dateCreation="ngModel"
+							class="form-control" type="date"
+							 value="2011-08-19T13:45:00">
+					</div>
+
+					<div class="form-group">
+						<label for="example-datetime-local-input"
+							class="col-2 col-form-label">Date expiration</label> <input ngModel name="dateExpiration" #dateExpiration="ngModel"
+							class="form-control" type="date"
+							id="example-datetime-local-input" value="2011-08-19T13:45:00">
+					</div>
+
+					<div class="form-group">
+						<textarea class="form-control" placeholder="Description" rows="3" [(ngModel)]="offre.description" name="description" #description="ngModel"></textarea>
+					</div>
+
+					<div class="form-group">
+						<input type="number" class="form-control" placeholder="Salaire" [(ngModel)]="offre.salaire" name="salaire" #salaire="ngModel">
+					</div>
+
+					<div class="form-group">
+            <select class="form-control" ngModel name="ville" required>
+              <option disabled ngValue>Ville</option>
+              <option *ngFor="let v of listville" [ngValue]="v"  >
+                {{v}}
+              </option>
+            </select>
+					</div>
+
+          <div class="form-group">
+            <select multiple class="form-control" ngModel name="competence" required>
+              <option disabled ngValue>Competence</option>
+              <option *ngFor="let c of competences" [ngValue]="c"   >
+                {{c.libelle}}
+              </option>
+            </select>
+            <span class="text-muted">Cliquer sur ctrl pour sélectionner plusieurs compétences</span>
+          </div>
+          <!--
+          <div class="form-group">
+            <select class="form-control" ngModel name="poste" required>
+              <option disabled ngValue>Poste</option>
+              <option *ngFor="let p of listPoste" [ngValue]="p"  >
+                {{p.libelle}}
+              </option>
+            </select>
+          </div>
+          -->
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Poste" [(ngModel)]="offre.poste" name="poste" #poste="ngModel">
+          </div>
+
+          <div class="form-group">
+            <select class="form-control" ngModel name="type" required>
+              <option disabled ngValue>Type de Contrat</option>
+              <option *ngFor="let t of listType" [ngValue]="t"  >
+                {{t.libelle}}
+              </option>
+            </select>
+          </div>
+
+				<button [disabled]="!f.valid" type="submit" class="btn btn-success pull-right">
+					Poster l'offre
+				</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ###################### MODAL ############################ -->

@@ -1,0 +1,30 @@
+<div class="card shadow" *ngIf="localS.localStorageItem('email') != null">
+    <div class="card-block text-center img-profile">
+        <img routerLink="/profile" class="card-img-top rounded-circle" src="../../assets/img/img.jpg" alt="Card image cap">
+    </div>
+    <div class="card-block">
+        <h5 routerLink="/profile" class="card-title text-center">{{utilisateur.nom}} {{utilisateur.prenom}}</h5>
+        <div class="row text-center" *ngIf="localS.localStorageItem('role') == 'Candidat' ">
+            <div class="col-4">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+            </div>
+            <div class="col-4">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+            <div class="col-4">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="row text-center" *ngIf="localS.localStorageItem('role') == 'Candidat' ">
+            <div class="col-4">
+                {{favoris}}
+            </div>
+            <div class="col-4">
+                {{favorisVue}}
+            </div>
+            <div class="col-4">
+                {{favorisNonVue}}
+            </div>
+        </div>
+    </div>
+</div>

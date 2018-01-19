@@ -1,0 +1,23 @@
+<div class="card shadow" *ngFor="let e of listeEntreprise let i = index ">
+    <div class="card-block">
+        <h4 class="card-title">{{e.nom}} </h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{e.ville}}</h6>
+        <p class="card-text">{{e.description}}</p>
+        <p class="card-text">
+            Spécialité:
+            <small class="text-muted">{{e.secteurActivite}}</small>
+        </p>
+        <p class="card-text">
+            Email
+            <small class="text-muted">{{e.email}}</small>
+        </p>
+        <p class="card-text">
+            Effectif :
+            <small class="text-muted">{{e.effectif}} </small>
+        </p>
+        <p class="card-text">
+            <a href="{{e.siteWeb}}">{{e.siteWeb}}</a>
+        </p>
+
+    </div>
+</div>

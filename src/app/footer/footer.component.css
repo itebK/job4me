@@ -1,0 +1,17 @@
+footer {
+	padding-top : 30px;
+	padding-bottom : 30px;
+	/*margin-top : 20px;*/
+	background-color : #e4e4e4;
+}
+
+.list-group .mb-1 h6{
+	color : #616161;
+}
+
+.list-group .list-group-item{
+	background-color : #e4e4e4;
+	color : #949494;
+	border : none;
+	padding: 5px;
+}

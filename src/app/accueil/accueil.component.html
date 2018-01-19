@@ -1,0 +1,43 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 img-bg">
+
+		<div class="row">
+		<div class="col-2"></div>
+		<div class="col-8 text-center text-home">
+
+			<h1>Ne cherche pas le travail, le travail vous cherche !</h1>
+
+		</div>
+		<div class="col-2"></div>
+		</div>
+
+
+			<div class="row ">
+				<div class="col-3"></div>
+				<div class="col-6 text-center">
+					<div class="card shadow search-filter">
+						<div class="card-block">
+							<div class="col-12">
+								<div class="input-group">
+									<div class="input-group addon">
+
+										<input [(ngModel)]="customSelected"
+											[typeahead]="statesComplex" typeaheadOptionField="titre"
+											placeholder="Chercher offre..." class="form-control" /> <span
+											class="input-group-btn">
+											<button class="btn btn-secondary" type="button" (click)="recherche()">
+												<i class="fa fa-search" aria-hidden="true"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+</div>
